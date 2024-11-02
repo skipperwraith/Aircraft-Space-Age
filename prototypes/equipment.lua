@@ -1,4 +1,4 @@
-local EQUIPPATH = "__Aircraft__/graphics/equipment/"
+local EQUIPPATH = "__Aircraft-space-age__/graphics/equipment/"
 
 data:extend({
   { -- Aircraft Energy Shield

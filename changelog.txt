@@ -1,4 +1,26 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.0.1
+Date: 29-10-2024
+  Changes:
+    - Fixed remaining bugs noted by MaciejGorczyca.
+    - All aircraft now support logistic requests and can be remotely flown.
+    - Changed "Advanced Aerodynamics" technology to unlock after crafting 100 robot frames.
+    - Changed "Aircraft Energy Shield" technology to require researching gunships.
+    - Added "MeteorSwarm" to author list.
+  Changes when Space Age is enabled:
+    - Aircraft can only be placed on Nauvis and Fulgora. Aircraft require at least 700 hPa pressure and at most 15 m/s^2 gravity.
+    - "Jets" technology requires Space and Agricultural science packs. Recipe changed to require Carbon Fiber.
+    - "Flying Fortress" technology requires Metallurgic and Agricultural science packs. Recipe changed to require Carbon Fiber.
+    - "Aircraft Energy Shield" technology requires Space and Electromagnetic science packs.
+    - "Afterburner" technology requires Space science packs.
+    - "Rocket Silo" technology requires "Cargo Planes" as a prerequisite.
+    - "Space platform thruster" technology requires "Afterburner" as a prerequisite.
+---------------------------------------------------------------------------------------------------
+Version: 2.0.0
+Date: 24-10-2024
+  Changes:
+    - Updated for 2.0 (Thanks MaciejGorczyca for feeding original code to Claude 3.5 Sonnet to fix most compatibility issues)
+---------------------------------------------------------------------------------------------------
 Version: 1.8.9
 Date: 24-6-2024
   Locale:

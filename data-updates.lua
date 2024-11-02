@@ -122,18 +122,14 @@ end
 end
 --Non-combat mode
 if settings.startup["non-combat-mode"].value == true then
-	data.raw["recipe"]["gunship"].enabled = false
-	data.raw["recipe"]["jet"].enabled = false
-	data.raw["recipe"]["flying-fortress"].enabled = false
+	
 	data.raw["technology"]["napalm"].prerequisites = {"flammables"}
 	data.raw["technology"]["jets"].enabled = false
 	data.raw["technology"]["gunships"].enabled = false
 	data.raw["technology"]["flying-fortress"].enabled = false
 end
 if settings.startup["non-combat-mode"].value == false then
-	data.raw["recipe"]["gunship"].enabled = true
-	data.raw["recipe"]["jet"].enabled = true
-	data.raw["recipe"]["flying-fortress"].enabled = true
+	
 	data.raw["technology"]["napalm"].prerequisites = {"flammables"}
 	data.raw["technology"]["jets"].enabled = true
 	data.raw["technology"]["gunships"].enabled = true

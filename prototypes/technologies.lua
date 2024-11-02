@@ -1,4 +1,4 @@
-local TECHPATH = "__Aircraft__/graphics/technology/"
+local TECHPATH = "__Aircraft-space-age__/graphics/technology/"
 
 local function unlock(recipe)
   return {
@@ -14,14 +14,20 @@ data:extend({
     icon = TECHPATH .. "advanced_aerodynamics_tech.png",
     icon_size = 256,
     prerequisites = {"automobilism", "robotics"},
-    unit = {
-      count = 350,
-      ingredients = {
-        {"automation-science-pack", 1},
-        {"logistic-science-pack", 1},
-        {"chemical-science-pack", 1}
-      },
-      time = 45
+    -- unit = {
+    --   count = 350,
+    --   ingredients = {
+    --     {"automation-science-pack", 1},
+    --     {"logistic-science-pack", 1},
+    --     {"chemical-science-pack", 1}
+    --   },
+    --   time = 45
+    -- },
+    research_trigger =
+    {
+      type = "craft-item",
+      item = "flying-robot-frame",
+      count = 100
     },
     order = "c-h-b"
   },
@@ -31,7 +37,12 @@ data:extend({
     name = "gunships",
     icon = TECHPATH .. "gunship.png",
     icon_size = 256,
-    effects = { unlock("gunship") },
+    effects = {
+      {
+        type = "unlock-recipe",
+        recipe = "gunship"
+      }
+    },
     prerequisites = {"military-3", "advanced-aerodynamics", "rocketry"},
     unit = {
       count = 500,
@@ -51,7 +62,12 @@ data:extend({
     name = "cargo-planes",
     icon = TECHPATH .. "cargo_plane.png",
     icon_size = 256,
-    effects = { unlock("cargo-plane") },
+    effects = { 
+      {
+        type = "unlock-recipe",
+        recipe="cargo-plane"
+      }
+    },
     prerequisites = {"advanced-aerodynamics"},
     unit = {
       count = 500,
@@ -70,7 +86,15 @@ data:extend({
     name = "jets",
     icon = TECHPATH .. "jet.png",
     icon_size = 256,
-    effects = { unlock("jet") },
+    effects = {
+      {
+        type = "unlock-recipe",
+        recipe="jet"
+      }
+    },
+
+      
+       
     prerequisites = {"gunships", "explosive-rocketry", "military-4"},
     unit = {
       count = 1000,
@@ -91,7 +115,12 @@ data:extend({
     name = "flying-fortress",
     icon = TECHPATH .. "flying_fortress.png",
     icon_size = 256,
-    effects = { unlock("flying-fortress") },
+    effects = { 
+      {
+        type = "unlock-recipe",
+        recipe="flying-fortress"
+      }
+      },
     prerequisites = {"gunships", "cargo-planes", "jets", "artillery", "space-science-pack"},
     unit = {
       count = 3000,
@@ -114,7 +143,12 @@ data:extend({
     name = "high-explosive-cannon-shells",
     icon = TECHPATH .. "high_explosive_shell_tech.png",
     icon_size = 256,
-    effects = { unlock("high-explosive-cannon-shell") },
+    effects = { 
+      {
+        type = "unlock-recipe",
+        recipe="high-explosive-cannon-shell"
+      }
+        },
     prerequisites = {"artillery"},
     unit = {
       count = 350,
@@ -134,7 +168,12 @@ data:extend({
     name = "napalm",
     icon = TECHPATH .. "napalm_tech.png",
     icon_size = 256,
-    effects = { unlock("napalm") },
+    effects = { 
+      {
+        type = "unlock-recipe",
+        recipe="napalm"
+      }
+        },
     prerequisites = {"flammables", "jets"},
     unit = {
       count = 200,
@@ -154,7 +193,12 @@ data:extend({
     name = "afterburner",
     icon = TECHPATH .. "aircraft_afterburner_tech.png",
     icon_size = 256,
-    effects = { unlock("aircraft-afterburner") },
+    effects = { 
+      {
+        type = "unlock-recipe",
+        recipe="aircraft-afterburner"
+      }
+        },
     prerequisites = {"advanced-aerodynamics"},
     unit = {
       count = 400,
@@ -174,8 +218,15 @@ data:extend({
     name = "aircraft-energy-shield",
     icon = TECHPATH .. "aircraft_energy_shield_tech.png",
     icon_size = 256,
-    effects = { unlock("aircraft-energy-shield") },
-    prerequisites = {"advanced-aerodynamics", "energy-shield-mk2-equipment"},
+    effects = { 
+      
+      {
+        type = "unlock-recipe",
+        recipe="aircraft-energy-shield"
+      }
+        },
+    --prerequisites = {"advanced-aerodynamics", "energy-shield-mk2-equipment"},\
+    prerequisites = {"gunships", "energy-shield-mk2-equipment"},
     unit = {
       count = 400,
       ingredients = {
@@ -191,3 +242,96 @@ data:extend({
     --Hey,   ^^^^^   a lil' easter egg for ya
   },
 })
+
+--Space age technology changes.
+--Locks some recipes behind space sciences
+if mods["space-age"] then
+  data.raw["technology"]["aircraft-energy-shield"].unit = {
+    count = 400,
+      ingredients = {
+        {"automation-science-pack", 1},
+        {"logistic-science-pack", 1},
+        {"chemical-science-pack", 1},
+        {"military-science-pack", 1},
+        {"utility-science-pack", 1},
+        {"space-science-pack", 1},
+        {"electromagnetic-science-pack", 1},
+      },
+      time = 45,
+  }
+  data.raw["technology"]["aircraft-energy-shield"].prerequisites = {"gunships", "energy-shield-mk2-equipment"}
+    
+  
+  data.raw["technology"]["jets"].unit = {
+    count = 1000,
+      ingredients = {
+        {"automation-science-pack", 1},
+        {"logistic-science-pack", 1},
+        {"chemical-science-pack", 1},
+        {"military-science-pack", 1},
+        {"production-science-pack", 1},
+        {"space-science-pack", 1},
+        {"agricultural-science-pack", 1},
+      },
+      time = 75
+  }
+  data.raw["technology"]["jets"].prerequisites = {"gunships", "explosive-rocketry", "military-4","space-science-pack","carbon-fiber"}
+  
+
+  data.raw["technology"]["flying-fortress"].unit = {
+    count = 3000,
+      ingredients = {
+        {"automation-science-pack", 1},
+        {"logistic-science-pack", 1},
+        {"chemical-science-pack", 1},
+        {"military-science-pack", 1},
+        {"utility-science-pack", 1},
+        {"production-science-pack", 1},
+        {"space-science-pack", 1},
+        {"metallurgic-science-pack", 1},
+        {"agricultural-science-pack", 1},
+      },
+      time = 120
+  }
+  data.raw["technology"]["flying-fortress"].prerequisites = {"gunships", "cargo-planes", "jets", "artillery", "space-science-pack","metallurgic-science-pack","carbon-fiber"}
+  
+
+  data.raw["technology"]["afterburner"].unit = {
+    count = 400,
+      ingredients = {
+        {"automation-science-pack", 1},
+        {"logistic-science-pack", 1},
+        {"chemical-science-pack", 1},
+        --{"utility-science-pack", 1},
+        {"space-science-pack", 1},
+       -- {"agricultural-science-pack", 1},
+      },
+      time = 45,
+  }
+  --table.insert(data.raw["technology"]["afterburner"].prerequisites,"space-platform-thruster")
+  table.insert(data.raw["technology"]["space-platform-thruster"].prerequisites,"afterburner")
+  --table.insert(data.raw["technology"]["afterburner"].prerequisites,"carbon-fiber")
+
+  data.raw["technology"]["high-explosive-cannon-shells"].unit = {
+   
+      count = 350,
+      ingredients = {
+        {"automation-science-pack", 1},
+        {"logistic-science-pack", 1},
+        {"chemical-science-pack", 1},
+        {"military-science-pack", 1},
+        {"space-science-pack", 1},
+        {"metallurgic-science-pack", 1},
+        {"utility-science-pack", 1},
+      },
+      time = 45
+    
+  }
+  
+  --Adds "cargo planes" technology to rocket silo rereqs
+  -- Reasoning: It makes sense for the progression to go from aircraft to spacecraft to me.
+  table.insert(data.raw["technology"]["rocket-silo"].prerequisites,"cargo-planes")
+
+  
+end
+

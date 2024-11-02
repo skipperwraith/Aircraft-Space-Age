@@ -109,17 +109,17 @@
     {
       sound =
       {
-        filename = "__Aircraft__/sounds/jet-loop.ogg",
+        filename = "__Aircraft-space-age__/sounds/jet-loop.ogg",
         volume = 0.4
       },
       activate_sound =
       {
-        filename = "__Aircraft__/sounds/jet-start.ogg",
+        filename = "__Aircraft-space-age__/sounds/jet-start.ogg",
         volume = 0.4
       },
       deactivate_sound =
       {
-        filename = "__Aircraft__/sounds/jet-stop.ogg",
+        filename = "__Aircraft-space-age__/sounds/jet-stop.ogg",
         volume = 0.4
       },
       match_speed_to_activity = false,

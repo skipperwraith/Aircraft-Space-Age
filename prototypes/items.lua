@@ -1,4 +1,4 @@
-local ICONPATH = "__Aircraft__/graphics/icons/"
+local ICONPATH = "__Aircraft-space-age__/graphics/icons/"
 local heavygunshotsounds = {
   variations = {
     { filename = "__base__/sound/fight/heavy-gunshot-1.ogg", volume = 0.8 },
@@ -66,7 +66,7 @@ data:extend({
     name = "aircraft-machine-gun",
     icon = "__base__/graphics/icons/submachine-gun.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "gun",
     order = "a[basic-clips]-c[aircraft-machine-gun]",
     attack_parameters =
@@ -97,7 +97,7 @@ data:extend({
     name = "aircraft-rocket-launcher",
     icon = "__base__/graphics/icons/rocket-launcher.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "gun",
     order = "e[aircraft-rocket-launcher]",
     attack_parameters =
@@ -118,7 +118,7 @@ data:extend({
     name = "cargo-plane-machine-gun",
     icon = "__base__/graphics/icons/submachine-gun.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "gun",
     order = "a[basic-clips]-c[cargo-plane-machine-gun]",
     attack_parameters =
@@ -149,7 +149,7 @@ data:extend({
     name = "aircraft-cannon",
     icon = "__base__/graphics/icons/tank-cannon.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "gun",
     order = "z[tank]-a[cannon]",
     attack_parameters =
@@ -170,7 +170,7 @@ data:extend({
     name = "flying-fortress-machine-gun",
     icon = "__base__/graphics/icons/submachine-gun.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "gun",
     order = "a[basic-clips]-c[aircraft-machine-gun]",
     attack_parameters = {
@@ -199,7 +199,7 @@ data:extend({
     name = "flying-fortress-rocket-launcher",
     icon = "__base__/graphics/icons/rocket-launcher.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "gun",
     order = "e[flying-fortress-rocket-launcher]",
     attack_parameters = {
@@ -219,7 +219,7 @@ data:extend({
     name = "napalm-launcher",
     icon = "__base__/graphics/icons/flamethrower.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "gun",
     order = "e[napalm-launcher]",
     attack_parameters = {
@@ -240,6 +240,8 @@ data:extend({
   { -- High explosive cannon shell
     type = "ammo",
     name = "high-explosive-cannon-shell",
+    -- added due to 2.0 modding API changes
+	ammo_category = "cannon-shell",
     icon = ICONPATH .. "high_explosive_shell_icon.png",
     icon_size = 64,
     flags = {},
@@ -270,6 +272,8 @@ data:extend({
   { -- Napalm
     type = "ammo",
     name = "napalm",
+    -- added due to 2.0 modding API changes
+	ammo_category = "flamethrower",
     icon = ICONPATH .. "napalm-ammo.png",
     icon_size = 64,
     flags = {},
@@ -300,7 +304,7 @@ data:extend({
     name = "aircraft-energy-shield",
     icon = ICONPATH .. "aircraft_energy_shield_icon.png",
     icon_size = 64,
-    placed_as_equipment_result = "aircraft-energy-shield",
+     place_as_equipment_result = "aircraft-energy-shield",
     flags = {},
     subgroup = "equipment",
     order = "b[shield]-c[aircraft-energy-shield]",
@@ -312,7 +316,7 @@ data:extend({
     name = "aircraft-afterburner",
     icon = ICONPATH .. "aircraft_afterburner_icon.png",
     icon_size = 64,
-    placed_as_equipment_result = "aircraft-afterburner",
+     place_as_equipment_result = "aircraft-afterburner",
     flags = {},
     subgroup = "equipment",
     order = "e[engine]-a[aircraft-afterburner]",

@@ -1,5 +1,5 @@
-local ICONPATH = "__Aircraft__/graphics/icons/"
-local ENTITYPATH = "__Aircraft__/graphics/entity/"
+local ICONPATH = "__Aircraft-space-age__/graphics/icons/"
+local ENTITYPATH = "__Aircraft-space-age__/graphics/entity/"
 
 local function addcommonanimlines(anim)
   for _,layer in pairs(anim.layers) do
@@ -58,6 +58,17 @@ local function airplaneLightAnimation(name)
   return anim
 end
 
+-- Updated collision mask definition for Factorio 2.0
+local function getCollisionMask()
+  return {
+    "object-layer",  -- Basic collision with objects
+    "player-layer",  -- Collision with players
+    "train-layer"    -- Collision with trains
+  }
+end
+
+
+
 local function lightdef(shift, distance, intensity)
   return {
     type = "oriented",
@@ -92,9 +103,9 @@ local function smokedef(shift, radius, height)
 end
 
 local jetsounds = {
-  sound = { filename = "__Aircraft__/sounds/jet-loop.ogg", volume = 0.3 },
-  --activate_sound = { filename = "__Aircraft__/sounds/jet-start.ogg", volume = 0.3 },
-  deactivate_sound = { filename = "__Aircraft__/sounds/jet-stop.ogg", volume = 0.3 },
+  sound = { filename = "__Aircraft-space-age__/sounds/jet-loop.ogg", volume = 0.3 },
+  --activate_sound = { filename = "__Aircraft-space-age__/sounds/jet-start.ogg", volume = 0.3 },
+  deactivate_sound = { filename = "__Aircraft-space-age__/sounds/jet-stop.ogg", volume = 0.3 },
   --match_speed_to_activity = false,
   match_speed_to_activity = true,
   fade_in_ticks = 30,
@@ -117,7 +128,10 @@ local function add_recurrent_params(craft)
   craft.dying_explosion = "medium-explosion"
   craft.terrain_friction_modifier = 0
   craft.collision_box = {{-0.9, -1.3}, {0.9, 1.3}}
-  craft.collision_mask = {}
+  -- Original
+  --craft.collision_mask = getCollisionMask() -- Updated collision mask
+  -- added due to 2.0 modding API changes
+  craft.collision_mask = { layers = {} }
   craft.selection_box = {{-0.9, -1.3}, {0.9, 1.3}}
   craft.selection_priority = 60
   craft.render_layer = "air-object"
@@ -182,7 +196,8 @@ local gunship = { -- Gunship with Car sound
         --MOVEMENT
     effectivity = 0.7,
     braking_power = "450kW",
-    burner = {
+    energy_source = {
+      type = "burner",
       fuel_inventory_size = 2,
       smoke = { smokedef(-16, 60, 38), smokedef(16, 60, 38) }
     },
@@ -193,6 +208,9 @@ local gunship = { -- Gunship with Car sound
     breaking_speed = 0.09,
     rotation_speed = 0.01,
     weight = 750,
+    allow_remote_driving=true,
+    trash_inventory_size=10,
+
   }
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 local cargo_plane = { -- Cargo Plane with Car sound
@@ -219,7 +237,8 @@ local cargo_plane = { -- Cargo Plane with Car sound
         --MOVEMENT
     effectivity = 1,
     braking_power = "650kW",
-    burner = {
+    energy_source = {
+      type = "burner",
       fuel_inventory_size = 6,
       smoke = { smokedef(0, 40, 36) }
     },
@@ -230,6 +249,8 @@ local cargo_plane = { -- Cargo Plane with Car sound
     breaking_speed = 0.15,
     rotation_speed = 0.006,
     weight = 3500,
+    allow_remote_driving=true,
+    trash_inventory_size=10,
   }
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 local jet = { -- Jet with Car sound
@@ -257,7 +278,8 @@ local jet = { -- Jet with Car sound
         --MOVEMENT
     effectivity = 0.9,
     braking_power = "2000kW",
-    burner = {
+    energy_source = {
+      type = "burner",
       fuel_inventory_size = 4,
       smoke = { smokedef(0, 62, 38) }
     },
@@ -268,6 +290,9 @@ local jet = { -- Jet with Car sound
     breaking_speed = 0.03,
     rotation_speed = 0.01,
     weight = 500,
+    allow_remote_driving=true,
+    trash_inventory_size=10,
+
   }
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 local flying_fortress = { -- Flying Fortress with Car sound
@@ -295,7 +320,8 @@ local flying_fortress = { -- Flying Fortress with Car sound
         --MOVEMENT
     effectivity = 2.3,
     braking_power = "850kW",
-    burner = {
+	energy_source = {
+      type = "burner",
       fuel_inventory_size = 4,
       smoke = { smokedef(0, 65, 38) }
     },
@@ -306,6 +332,9 @@ local flying_fortress = { -- Flying Fortress with Car sound
     breaking_speed = 0.001,
     rotation_speed = 0.004,
     weight = 3000,
+    allow_remote_driving=true,
+    trash_inventory_size=10,
+    
   }
 
 add_recurrent_params(gunship)
@@ -316,3 +345,22 @@ add_recurrent_params(flying_fortress)
 data:extend({
   gunship, cargo_plane, jet, flying_fortress
 })
+
+if mods["space-age"] then --Add surface conditions if space age enabled
+  local entities= {"gunship", "cargo-plane", "jet", "flying-fortress" }
+  for i,entity in ipairs(entities) do
+    data.raw["car"][entity].surface_conditions =
+    {
+      {
+        property = "pressure",
+        min = 700,
+        
+      },
+      {
+        property = "gravity",
+        max = 15,
+        
+      }
+    }
+  end
+end
