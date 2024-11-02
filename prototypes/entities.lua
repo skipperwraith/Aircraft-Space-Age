@@ -346,7 +346,7 @@ data:extend({
   gunship, cargo_plane, jet, flying_fortress
 })
 
-if mods["space-age"] then --Add surface conditions if space age enabled
+if mods["space-age"] and settings.startup["lock-surfaces-space-age"].value==true then --Add surface conditions if space age enabled
   local entities= {"gunship", "cargo-plane", "jet", "flying-fortress" }
   for i,entity in ipairs(entities) do
     data.raw["car"][entity].surface_conditions =
@@ -358,7 +358,7 @@ if mods["space-age"] then --Add surface conditions if space age enabled
       },
       {
         property = "gravity",
-        max = 15,
+        max = 20,
         
       }
     }

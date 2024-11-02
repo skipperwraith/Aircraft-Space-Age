@@ -332,6 +332,38 @@ if mods["space-age"] then
   -- Reasoning: It makes sense for the progression to go from aircraft to spacecraft to me.
   table.insert(data.raw["technology"]["rocket-silo"].prerequisites,"cargo-planes")
 
+  if settings.startup["experimental-features"].value==true then 
+  --   data:extend({
+  --     { -- Blimp
+  --   type = "technology",
+  --   name = "blimps",
+  --   icon = TECHPATH .. "flying_fortress.png",
+  --   icon_size = 256,
+  --   effects = { 
+  --     {
+  --       type = "unlock-recipe",
+  --       recipe="flying-fortress"
+  --     }
+  --     },
+  --   prerequisites = {"gunships", "cargo-planes", "jets", "artillery", "space-science-pack"},
+  --   unit = {
+  --     count = 3000,
+  --     ingredients = {
+  --       {"automation-science-pack", 1},
+  --       {"logistic-science-pack", 1},
+  --       {"chemical-science-pack", 1},
+  --       {"military-science-pack", 1},
+  --       {"utility-science-pack", 1},
+  --       {"production-science-pack", 1},
+  --       {"space-science-pack", 1}
+  --     },
+  --     time = 120
+  --   },
+  --   order = "c-h-f"
+  -- },
+  --   })
+  end
+
   
 end
 

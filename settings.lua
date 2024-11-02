@@ -63,4 +63,18 @@ data:extend(
     default_value = false,
     order = "be",
   },
+  {
+    type = "bool-setting",
+    name = "lock-surfaces-space-age",
+    setting_type = "startup",
+    default_value = true,
+    order = "bf",
+  },
+  {
+    type = "bool-setting",
+    name = "experimental-features",
+    setting_type = "startup",
+    default_value = false,
+    order = "bg",
+  },
 })

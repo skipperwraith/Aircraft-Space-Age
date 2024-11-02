@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.0.2
+Date: 2-11-2024
+  Changes:
+    - Added startup option "Restrict Aircraft based on surface conditions." Enabled by default, and when disabled, will allow aircraft to fly on all surfaces.
+    - Changed aircraft surface conditions such that aircraft can fly on Gleba.
+    - Added startup option "Enable Experimental Features." Currently does nothing.
+---------------------------------------------------------------------------------------------------
 Version: 2.0.1
 Date: 29-10-2024
   Changes:
