@@ -63,13 +63,13 @@ data:extend(
     default_value = false,
     order = "be",
   },
-  {
-    type = "bool-setting",
-    name = "space-age-easy-mode",
-    setting_type = "startup",
-    default_value = false,
-    order = "bf",
-  },
+  -- {
+  --   type = "bool-setting",
+  --   name = "space-age-easy-mode",
+  --   setting_type = "startup",
+  --   default_value = false,
+  --   order = "bf",
+  -- },
   {
     type = "bool-setting",
     name = "lock-surfaces-space-age",
