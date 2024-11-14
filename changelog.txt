@@ -1,10 +1,16 @@
----------------------------------------------------------------------------------------------------
-Version: 2.0.3
-Date: 
+Version: 2.1.0
+Date: 14-11-2024
   Changes:
-    - 
-  Locale: 
+    - Reverted all aircraft recipes to original recipes when Space Age is enabled.
+    - Added Carbon fiber variants of all existing aircraft, with half the weight and HP.
+    - Increased the fuel burn rate of all aircraft, to make non-aircraft transportation more competitive.
+    - Reduced the storage capacity of all aircraft to 5 stacks, with the exception of Cargo Planes, which have been reduced to 40 from 120.
+    - Hardcoded support for "Helicopter Revival" mod integration. Helicopter is now a required dependency.
+    - Disabled tank control for aircraft to increase realism and create distinction between aircraft and helicopters.
+    - New config: Enable Carbon fiber Aircraft.
+  Locale:
     - Added Chinese localisation (Thank you Houraiji_Kyuusyou!)
+    - All non-English locales are in need of updating. Volunteers would be appreciated.
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.2
 Date: 2-11-2024
