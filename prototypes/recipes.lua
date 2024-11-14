@@ -137,25 +137,27 @@ data:extend({
   },
 })
 
-if mods["space-age"] then
+if mods["space-age"] and settings.startup["space-age-easy-mode"].value==false then
   --table.insert(data.raw["recipe"]["aircraft-afterburner"].ingredients,{type = "item", name = "carbon-fiber", amount = 10})
 
-  data.raw["recipe"]["jet"].ingredients = {
-    {type = "item", name = "electric-engine-unit", amount = 256},
-    {type = "item", name = "electronic-circuit", amount = 120},
-    {type = "item", name = "advanced-circuit", amount = 50},
-    {type = "item", name = "carbon-fiber", amount = 100},
-    {type = "item", name = "submachine-gun", amount = 3},
-    {type = "item", name = "rocket-launcher", amount = 3},
-  }
-  data.raw["recipe"]["flying-fortress"].ingredients = {
-    {type = "item", name = "electric-engine-unit", amount = 100},
-    {type = "item", name = "steel-plate", amount = 1000},
-    {type = "item", name = "carbon-fiber", amount = 1000},
-    --{type = "item", name = "advanced-circuit", amount = 80},
-    {type = "item", name = "processing-unit", amount = 120},
-    {type = "item", name = "submachine-gun", amount = 15},
-    {type = "item", name = "rocket-launcher", amount = 15},
-  }
+  if settings.startup["carbon-fiber-aircraft"]==false then
+    data.raw["recipe"]["jet"].ingredients = {
+      {type = "item", name = "electric-engine-unit", amount = 256},
+      {type = "item", name = "electronic-circuit", amount = 120},
+      {type = "item", name = "advanced-circuit", amount = 50},
+      {type = "item", name = "carbon-fiber", amount = 100},
+      {type = "item", name = "submachine-gun", amount = 3},
+      {type = "item", name = "rocket-launcher", amount = 3},
+    }
+    data.raw["recipe"]["flying-fortress"].ingredients = {
+      {type = "item", name = "electric-engine-unit", amount = 100},
+      {type = "item", name = "steel-plate", amount = 1000},
+      {type = "item", name = "carbon-fiber", amount = 1000},
+      --{type = "item", name = "advanced-circuit", amount = 80},
+      {type = "item", name = "processing-unit", amount = 120},
+      {type = "item", name = "submachine-gun", amount = 15},
+      {type = "item", name = "rocket-launcher", amount = 15},
+    }
+  end
 
 end

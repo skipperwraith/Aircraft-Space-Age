@@ -262,40 +262,57 @@ if mods["space-age"] then
   data.raw["technology"]["aircraft-energy-shield"].prerequisites = {"gunships", "energy-shield-mk2-equipment"}
     
   
-  data.raw["technology"]["jets"].unit = {
-    count = 1000,
-      ingredients = {
-        {"automation-science-pack", 1},
-        {"logistic-science-pack", 1},
-        {"chemical-science-pack", 1},
-        {"military-science-pack", 1},
-        {"production-science-pack", 1},
-        {"space-science-pack", 1},
-        {"agricultural-science-pack", 1},
-      },
-      time = 75
-  }
-  data.raw["technology"]["jets"].prerequisites = {"gunships", "explosive-rocketry", "military-4","space-science-pack","carbon-fiber"}
+  -- if settings.startup["space-age-easy-mode"].value==false then 
+  --   -- data.raw["technology"]["jets"].unit = {
+  --   --   count = 1000,
+  --   --     ingredients = {
+  --   --       {"automation-science-pack", 1},
+  --   --       {"logistic-science-pack", 1},
+  --   --       {"chemical-science-pack", 1},
+  --   --       {"military-science-pack", 1},
+  --   --       {"production-science-pack", 1},
+  --   --       {"space-science-pack", 1},
+  --   --       {"agricultural-science-pack", 1},
+  --   --     },
+  --   --     time = 75
+  --   -- }
+
+  -- else
+  --   data.raw["technology"]["jets"].unit = {
+  --     count = 1000,
+  --       ingredients = {
+  --         {"automation-science-pack", 1},
+  --         {"logistic-science-pack", 1},
+  --         {"chemical-science-pack", 1},
+  --         {"military-science-pack", 1},
+  --         {"production-science-pack", 1},
+  --         {"space-science-pack", 1},
+  --       },
+  --       time = 75
+  --   }
+  -- end
+  
+  --data.raw["technology"]["jets"].prerequisites = {"gunships", "explosive-rocketry", "military-4","space-science-pack","carbon-fiber"}
   
 
-  data.raw["technology"]["flying-fortress"].unit = {
-    count = 3000,
-      ingredients = {
-        {"automation-science-pack", 1},
-        {"logistic-science-pack", 1},
-        {"chemical-science-pack", 1},
-        {"military-science-pack", 1},
-        {"utility-science-pack", 1},
-        {"production-science-pack", 1},
-        {"space-science-pack", 1},
-        {"metallurgic-science-pack", 1},
-        {"agricultural-science-pack", 1},
-      },
-      time = 120
-  }
-  data.raw["technology"]["flying-fortress"].prerequisites = {"gunships", "cargo-planes", "jets", "artillery", "space-science-pack","metallurgic-science-pack","carbon-fiber"}
-  
-
+  -- data.raw["technology"]["flying-fortress"].unit = {
+  --   count = 3000,
+  --     ingredients = {
+  --       {"automation-science-pack", 1},
+  --       {"logistic-science-pack", 1},
+  --       {"chemical-science-pack", 1},
+  --       {"military-science-pack", 1},
+  --       {"utility-science-pack", 1},
+  --       {"production-science-pack", 1},
+  --       {"space-science-pack", 1},
+  --       {"metallurgic-science-pack", 1},
+  --       {"agricultural-science-pack", 1},
+  --     },
+  --     time = 120
+  -- }
+  --data.raw["technology"]["flying-fortress"].prerequisites = {"gunships", "cargo-planes", "jets", "artillery", "space-science-pack","metallurgic-science-pack","carbon-fiber"}
+  --table.insert(data.raw["technology"]["flying-fortress"].prerequisites,"metallurgic-science-pack") = {"gunships", "cargo-planes", "jets", "artillery", "space-science-pack","metallurgic-science-pack","carbon-fiber"}
+  table.insert(data.raw["technology"]["flying-fortress"].unit.ingredients,{"metallurgic-science-pack", 1})
   data.raw["technology"]["afterburner"].unit = {
     count = 400,
       ingredients = {
@@ -312,21 +329,21 @@ if mods["space-age"] then
   table.insert(data.raw["technology"]["space-platform-thruster"].prerequisites,"afterburner")
   --table.insert(data.raw["technology"]["afterburner"].prerequisites,"carbon-fiber")
 
-  data.raw["technology"]["high-explosive-cannon-shells"].unit = {
+  -- data.raw["technology"]["high-explosive-cannon-shells"].unit = {
    
-      count = 350,
-      ingredients = {
-        {"automation-science-pack", 1},
-        {"logistic-science-pack", 1},
-        {"chemical-science-pack", 1},
-        {"military-science-pack", 1},
-        {"space-science-pack", 1},
-        {"metallurgic-science-pack", 1},
-        {"utility-science-pack", 1},
-      },
-      time = 45
+  --     count = 350,
+  --     ingredients = {
+  --       {"automation-science-pack", 1},
+  --       {"logistic-science-pack", 1},
+  --       {"chemical-science-pack", 1},
+  --       {"military-science-pack", 1},
+  --       {"space-science-pack", 1},
+  --       {"metallurgic-science-pack", 1},
+  --       {"utility-science-pack", 1},
+  --     },
+  --     time = 45
     
-  }
+  -- }
   
   --Adds "cargo planes" technology to rocket silo rereqs
   -- Reasoning: It makes sense for the progression to go from aircraft to spacecraft to me.
@@ -363,7 +380,10 @@ if mods["space-age"] then
   -- },
   --   })
   end
-
+  if settings.startup["carbon-fiber-aircraft"].value==true then 
+    --Aircraft_List
+    
+  end
   
 end
 
