@@ -97,19 +97,19 @@ if settings.startup["aircraft-hardmode"].value == true then
 	--]]
 end
 --Helicopters Technology change
-if settings.startup["helicopter-tech"].value == true then
+if mods["HelicopterRevival"] then --and settings.startup["helicopter-tech"].value == true 
 	if data.raw["car"]["heli-entity-_-"] then
 		table.insert(data.raw["technology"]["heli-technology"].prerequisites, "advanced-aerodynamics")
 	end
 end
---Raven Technology change
-if settings.startup["raven-tech"].value == true then
-	if data.raw["car"]["raven-1"] then
-		table.insert(data.raw["technology"]["raven"].prerequisites, "advanced-aerodynamics")
-	end
-end
+--Raven Technology change. Raven has not been updated.
+-- if settings.startup["raven-tech"].value == true then
+-- 	if data.raw["car"]["raven-1"] then
+-- 		table.insert(data.raw["technology"]["raven"].prerequisites, "advanced-aerodynamics")
+-- 	end
+-- end
 --Helicopters Equipment change
-if settings.startup["heli-equipment-grid"].value == true then
+if mods["HelicopterRevival"] then --and settings.startup["heli-equipment-grid"].value == true then
 	if data.raw["car"]["heli-entity-_-"] then
 		table.insert(data.raw["equipment-grid"]["heli-equipment-grid"].equipment_categories, "aircraft")
 	end

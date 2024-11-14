@@ -136,7 +136,7 @@ local function add_recurrent_params(craft)
   craft.selection_priority = 60
   craft.render_layer = "air-object"
   craft.final_render_layer = "air-object"
-  craft.tank_driving = true
+  --craft.tank_driving = true
   craft.sound_no_fuel = { { filename = "__base__/sound/fight/tank-no-fuel-1.ogg", volume = 0.6 } }
   craft.vehicle_impact_sound = { filename = "__base__/sound/car-metal-impact.ogg", volume = 0.65 }
   craft.working_sound = settings.startup["aircraft-sound-setting"].value and jetsounds or carsounds
@@ -190,21 +190,23 @@ local gunship = { -- Gunship with Car sound
       resist("explosion",10, 30),
       resist("acid",     60, 20),
     },
-    inventory_size = 30,
+    --inventory_size = 30,
+    inventory_size = 5,
     guns = { "aircraft-machine-gun", "aircraft-rocket-launcher"},
     equipment_grid = "gunship-equipment-grid",
         --MOVEMENT
-    effectivity = 0.7,
+    effectivity = 0.07,
     braking_power = "450kW",
     energy_source = {
       type = "burner",
-      fuel_inventory_size = 2,
+      fuel_inventory_size = 4,
       smoke = { smokedef(-16, 60, 38), smokedef(16, 60, 38) }
     },
-    consumption = "650kW",
+    --consumption = "650kW",
+    consumption = "45MW",
     friction = 0.003,
     stop_trigger_speed = 0.2,
-    acceleration_per_energy = 0.35,
+    acceleration_per_energy = 0.1,
     breaking_speed = 0.09,
     rotation_speed = 0.01,
     weight = 750,
@@ -232,20 +234,22 @@ local cargo_plane = { -- Cargo Plane with Car sound
       resist("explosion", 2, 30),
       resist("acid",     60, 20),
     },
-    inventory_size = 120,
+    --inventory_size = 120,
+    inventory_size = 40,
     guns = { "cargo-plane-machine-gun"},
         --MOVEMENT
-    effectivity = 1,
+    effectivity = 0.1,
     braking_power = "650kW",
     energy_source = {
       type = "burner",
-      fuel_inventory_size = 6,
+      fuel_inventory_size = 12,
       smoke = { smokedef(0, 40, 36) }
     },
-    consumption = "1250kW",
-    friction = 0.010,
+    --consumption = "1250kW",
+    consumption = "85MW",
+    friction = 0.01,
     stop_trigger_speed = 0.2,
-    acceleration_per_energy = 0.15,
+    acceleration_per_energy = 0.1,
     breaking_speed = 0.15,
     rotation_speed = 0.006,
     weight = 3500,
@@ -276,20 +280,22 @@ local jet = { -- Jet with Car sound
     guns = { "aircraft-machine-gun", "aircraft-rocket-launcher", "napalm-launcher"},
     equipment_grid = "jet-equipment-grid",
         --MOVEMENT
-    effectivity = 0.9,
+    effectivity = 0.09,
     braking_power = "2000kW",
     energy_source = {
       type = "burner",
-      fuel_inventory_size = 4,
+      fuel_inventory_size = 8,
       smoke = { smokedef(0, 62, 38) }
     },
-    consumption = "850kW",
+    --consumption = "850kW",
+    consumption= "65MW", --All aircraft will have consumption multiplied by 100.
     friction = 0.001,
     stop_trigger_speed = 0.2,
-    acceleration_per_energy = 0.80,
+    acceleration_per_energy = 0.10,
     breaking_speed = 0.03,
     rotation_speed = 0.01,
-    weight = 500,
+    --weight = 50000,
+    weight = 2500,
     allow_remote_driving=true,
     trash_inventory_size=10,
 
@@ -314,21 +320,23 @@ local flying_fortress = { -- Flying Fortress with Car sound
       resist("explosion", 1, 30),
       resist("acid",     60, 20),
     },
-    inventory_size = 20,
+    --inventory_size = 20,
+    inventory_size = 5,
     guns = { "flying-fortress-machine-gun", "aircraft-cannon", "flying-fortress-rocket-launcher"},
     equipment_grid = "flying-fortress-equipment-grid",
         --MOVEMENT
-    effectivity = 2.3,
+    effectivity = 0.23,
     braking_power = "850kW",
 	energy_source = {
       type = "burner",
-      fuel_inventory_size = 4,
+      fuel_inventory_size = 8,
       smoke = { smokedef(0, 65, 38) }
     },
-    consumption = "1850kW",
+    --consumption = "1850kW",
+    consumption = "130MW",
     friction = 0.015,
     stop_trigger_speed = 0.1,
-    acceleration_per_energy = 0.30,
+    acceleration_per_energy = 0.10,
     breaking_speed = 0.001,
     rotation_speed = 0.004,
     weight = 3000,
@@ -345,10 +353,10 @@ add_recurrent_params(flying_fortress)
 data:extend({
   gunship, cargo_plane, jet, flying_fortress
 })
-
+Aircraft_List= {"gunship", "cargo-plane", "jet", "flying-fortress" } --List of aircraft to apply following transformations to
 if mods["space-age"] and settings.startup["lock-surfaces-space-age"].value==true then --Add surface conditions if space age enabled
-  local entities= {"gunship", "cargo-plane", "jet", "flying-fortress" }
-  for i,entity in ipairs(entities) do
+  
+  for i,entity in ipairs(Aircraft_List) do
     data.raw["car"][entity].surface_conditions =
     {
       {
@@ -364,3 +372,6 @@ if mods["space-age"] and settings.startup["lock-surfaces-space-age"].value==true
     }
   end
 end
+
+
+
