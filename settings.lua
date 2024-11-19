@@ -86,6 +86,13 @@ data:extend(
   },
   {
     type = "bool-setting",
+    name = "use-old-stats",
+    setting_type = "startup",
+    default_value = true,
+    order = "bi",
+  },
+  {
+    type = "bool-setting",
     name = "experimental-features",
     setting_type = "startup",
     default_value = false,

@@ -1,6 +1,6 @@
 {
   "name": "Aircraft-space-age",
-  "version": "2.1.0",
+  "version": "2.1.2",
   "factorio_version": "2.0",
   "title": "Aircraft (Updated for Space Age)",
   "author": "Thomasnotused, MeteorSwarm", 
@@ -8,7 +8,7 @@
   "homepage": "https://forums.factorio.com/viewtopic.php?f=120&t=18714",
   "dependencies": [
     "base >= 2.0.0",
-    "HelicopterRevival >= 0.3.0",
+    "? HelicopterRevival >= 0.3.0",
     "? space-age >= 2.0.0",
     "? bobplates >= 1.1.0",
     "? bobelectronics >= 1.1.0",

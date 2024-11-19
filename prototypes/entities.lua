@@ -136,7 +136,11 @@ local function add_recurrent_params(craft)
   craft.selection_priority = 60
   craft.render_layer = "air-object"
   craft.final_render_layer = "air-object"
-  --craft.tank_driving = true
+  if settings.startup["use-old-stats"].value==true then
+    craft.tank_driving = true
+  else
+    craft.tank_driving = false
+  end
   craft.sound_no_fuel = { { filename = "__base__/sound/fight/tank-no-fuel-1.ogg", volume = 0.6 } }
   craft.vehicle_impact_sound = { filename = "__base__/sound/car-metal-impact.ogg", volume = 0.65 }
   craft.working_sound = settings.startup["aircraft-sound-setting"].value and jetsounds or carsounds
@@ -214,6 +218,14 @@ local gunship = { -- Gunship with Car sound
     trash_inventory_size=10,
 
   }
+
+if settings.startup["use-old-stats"].value==true then
+    gunship.inventory_size = 30
+    gunship.effectivity=0.7
+    gunship.consumption = "650kW"
+    gunship.acceleration_per_energy = 0.35
+  end
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 local cargo_plane = { -- Cargo Plane with Car sound
     type = "car",
@@ -242,7 +254,7 @@ local cargo_plane = { -- Cargo Plane with Car sound
     braking_power = "650kW",
     energy_source = {
       type = "burner",
-      fuel_inventory_size = 12,
+      fuel_inventory_size = 10,
       smoke = { smokedef(0, 40, 36) }
     },
     --consumption = "1250kW",
@@ -256,6 +268,12 @@ local cargo_plane = { -- Cargo Plane with Car sound
     allow_remote_driving=true,
     trash_inventory_size=10,
   }
+if settings.startup["use-old-stats"].value==true then
+  cargo_plane.inventory_size = 120
+  cargo_plane.effectivity=1
+  cargo_plane.consumption = "1250kW"
+  cargo_plane.acceleration_per_energy=0.15
+end
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 local jet = { -- Jet with Car sound
     type = "car",
@@ -300,6 +318,14 @@ local jet = { -- Jet with Car sound
     trash_inventory_size=10,
 
   }
+
+if settings.startup["use-old-stats"].value==true then
+    jet.inventory_size = 5
+    jet.effectivity=0.9
+    jet.consumption = "850kW"
+    jet.acceleration_per_energy=0.8
+    jet.weight=500
+  end
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 local flying_fortress = { -- Flying Fortress with Car sound
     type = "car",
@@ -344,6 +370,13 @@ local flying_fortress = { -- Flying Fortress with Car sound
     trash_inventory_size=10,
     
   }
+if settings.startup["use-old-stats"].value==true then
+    flying_fortress.inventory_size = 20
+    flying_fortress.effectivity=2.3
+    flying_fortress.consumption = "1850kW"
+    flying_fortress.acceleration_per_energy=0.30
+  end
+
 
 add_recurrent_params(gunship)
 add_recurrent_params(cargo_plane)
