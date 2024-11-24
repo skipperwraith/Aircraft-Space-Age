@@ -8,6 +8,7 @@
   "homepage": "https://forums.factorio.com/viewtopic.php?f=120&t=18714",
   "dependencies": [
     "base >= 2.0.0",
+    "? AircraftRealism >= 2.0.0",
     "? HelicopterRevival >= 0.3.0",
     "? space-age >= 2.0.0",
     "? bobplates >= 1.1.0",
@@ -16,6 +17,6 @@
     "? bobwarfare >= 1.1.0",
     "? bobvehicleequipment >= 1.1.0",
     "! traintunnels <= 0.0.11",
-    "! aircraft"
+    "! Aircraft"
   ]
 }
