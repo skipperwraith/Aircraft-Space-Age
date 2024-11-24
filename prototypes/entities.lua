@@ -175,6 +175,18 @@ local function resist(type, decrease, percent)
   }
 end
 
+local function v_liftoff(aircraft,wing_area,C_lift) --When AircraftRealism is enabled, this function determines v_liftoff.
+  local R = 8.314472 --m^2 kg s^-2 K^-1 mol^-1 
+  local kelvin = 273.15
+  local T_nauvis=20+kelvin
+  local g = 10
+  local m= aircraft.weight
+  local P = data.raw["planet"]["nauvis"].surface_properties["pressure"]
+  local P =1000
+  local v=math.sqrt((2*R*T_nauvis*m*g)/C_lift/P/wing_area) --(The velocity when lift = weight)
+  return v
+end
+
 local gunship = { -- Gunship with Car sound
     type = "car",
     name = "gunship",
@@ -326,6 +338,8 @@ if settings.startup["use-old-stats"].value==true then
     jet.acceleration_per_energy=0.8
     jet.weight=500
   end
+
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 local flying_fortress = { -- Flying Fortress with Car sound
     type = "car",
@@ -403,6 +417,30 @@ if mods["space-age"] and settings.startup["lock-surfaces-space-age"].value==true
         
       }
     }
+  end
+end
+
+if mods["AircraftRealism"] then
+local arapi=require("__AircraftRealism__.api")
+  for i,entity in ipairs(Aircraft_List) do
+    local aircraft_flying=table.deepcopy(data.raw["car"][entity])
+    aircraft_flying.name=aircraft_flying.name .. "-flying"
+    data:extend{aircraft_flying}
+    arapi.register_plane({
+      grounded_name=data.raw["car"][entity].name,
+      airborne_name=aircraft_flying.name,
+      transition_speed_setting="transition-speed-" .. data.raw["car"][entity].name,
+    })
+    
+    -- data:extend({
+    --   {
+    --     type = "double-setting",
+    --     name = "transition-speed-" .. data.raw.car[entity].name,
+    --     setting_type="runtime-global",
+    --     --minimum_value=0,
+    --     default_value=v_liftoff(data.raw["car"][entity],wing_area,C_lift)
+    --   }
+    -- })
   end
 end
 

@@ -98,5 +98,68 @@ data:extend(
     default_value = false,
     order = "bz",
   },
+  
+  
 
 })
+
+if mods["AircraftRealism"] then 
+
+  data:extend{{
+    type = "double-setting",
+    name = "transition-speed-gunship",
+    setting_type = "startup",
+    default_value = 100,
+    order = "ca",
+  },
+  {
+    type = "double-setting",
+    name = "transition-speed-gunship-carbon-fiber",
+    setting_type = "startup",
+    default_value = 100,
+    order = "cb",
+  },
+  {
+    type = "double-setting",
+    name = "transition-speed-cargo-plane",
+    setting_type = "startup",
+    default_value = 100,
+    order = "cc",
+  },
+  {
+    type = "double-setting",
+    name = "transition-speed-cargo-plane-carbon-fiber",
+    setting_type = "startup",
+    default_value = 100,
+    order = "cd",
+  },
+  {
+    type = "double-setting",
+    name = "transition-speed-jet",
+    setting_type = "startup",
+    default_value = 100,
+    order = "ce",
+  },
+  {
+    type = "double-setting",
+    name = "transition-speed-jet-carbon-fiber",
+    setting_type = "startup",
+    default_value = 100,
+    order = "cf",
+  },
+  {
+    type = "double-setting",
+    name = "transition-speed-flying-fortress",
+    setting_type = "startup",
+    default_value = 100,
+    order = "cg",
+  },
+  {
+    type = "double-setting",
+    name = "transition-speed-flying-fortress-carbon-fiber",
+    setting_type = "startup",
+    default_value = 100,
+    order = "ch",
+  }
+}
+end
