@@ -1,22 +1,33 @@
-local ICONPATH = "__Aircraft-space-age__/graphics/icons/"
-local heavygunshotsounds = {
-  variations = {
-    { filename = "__base__/sound/fight/heavy-gunshot-1.ogg", volume = 0.8 },
-    { filename = "__base__/sound/fight/heavy-gunshot-2.ogg", volume = 0.8 },
-    { filename = "__base__/sound/fight/heavy-gunshot-3.ogg", volume = 0.8 },
-    { filename = "__base__/sound/fight/heavy-gunshot-4.ogg", volume = 0.8 }
-  }
-}
+local item_sounds = require("__base__.prototypes.item_sounds")
+local sounds = require("__base__.prototypes.entity.sounds")
+--easy access to vanilla sounds, the weapon sounds even come with vibrations for controllers lol :D
+
+--see sounds.tank_gunshot in base/protoypes/entity/sounds.lua
+--local tankcannonsound = { { filename = "__base__/sound/fight/tank-cannon.ogg", volume = 1 } }
+
+--see sounds.heavy_gunshot in base/protoypes/entity/sounds.lua
+--local heavygunshotsounds = {
+--  variations = {
+--    { filename = "__base__/sound/fight/heavy-gunshot-1.ogg", volume = 0.8 },
+--    { filename = "__base__/sound/fight/heavy-gunshot-2.ogg", volume = 0.8 },
+--    { filename = "__base__/sound/fight/heavy-gunshot-3.ogg", volume = 0.8 },
+--    { filename = "__base__/sound/fight/heavy-gunshot-4.ogg", volume = 0.8 }
+--  }
+--}
+
 local flamethrowersounds = {
   begin_sound = { { filename = "__base__/sound/fight/flamethrower-start.ogg", volume = 0.7 } },
   middle_sound = { { filename = "__base__/sound/fight/flamethrower-mid.ogg", volume = 0.7 } },
-  end_sound = { { filename = "__base__/sound/fight/flamethrower-end.ogg", volume = 0.7 } } }
+  end_sound = { { filename = "__base__/sound/fight/flamethrower-end.ogg", volume = 0.7 } } 
+}
+
 local rocketlaunchersound = { {filename = "__base__/sound/fight/rocket-launcher.ogg", volume = 0.7 } }
-local tankcannonsound = { { filename = "__base__/sound/fight/tank-cannon.ogg", volume = 1 } }
+
+local ICONPATH = "__Aircraft-space-age__/graphics/icons/"
 
 data:extend({
 -----------------------------------------------AIRPLANES----------------------------------------------------
- { -- Gunship
+  { -- Gunship
     type = "item-with-entity-data",
     name = "gunship",
     icon = ICONPATH .. "gunship_icon.png",
@@ -24,6 +35,9 @@ data:extend({
     flags = {},
     subgroup = "transport",
     order = "b[personal-transport]-e[gunship]",
+    inventory_move_sound = item_sounds.vehicle_inventory_move,
+    pick_sound = item_sounds.vehicle_inventory_pickup,
+    drop_sound = item_sounds.vehicle_inventory_move,
     place_result = "gunship",
     stack_size = 1,
   },
@@ -35,6 +49,9 @@ data:extend({
     flags = {},
     subgroup = "transport",
     order = "b[personal-transport]-f[cargo-plane]",
+    inventory_move_sound = item_sounds.vehicle_inventory_move,
+    pick_sound = item_sounds.vehicle_inventory_pickup,
+    drop_sound = item_sounds.vehicle_inventory_move,
     place_result = "cargo-plane",
     stack_size = 1,
   },
@@ -46,6 +63,9 @@ data:extend({
     flags = {},
     subgroup = "transport",
     order = "b[personal-transport]-g[jet]",
+    inventory_move_sound = item_sounds.vehicle_inventory_move,
+    pick_sound = item_sounds.vehicle_inventory_pickup,
+    drop_sound = item_sounds.vehicle_inventory_move,
     place_result = "jet",
     stack_size = 1,
   },
@@ -57,6 +77,9 @@ data:extend({
     flags = {},
     subgroup = "transport",
     order = "b[personal-transport]-h[flying-fortress]",
+    inventory_move_sound = item_sounds.vehicle_inventory_move,
+    pick_sound = item_sounds.vehicle_inventory_pickup,
+    drop_sound = item_sounds.vehicle_inventory_move,
     place_result = "flying-fortress",
     stack_size = 1,
   },
@@ -88,7 +111,7 @@ data:extend({
       },
       projectile_creation_distance = 0.65,
       range = 30,
-      sound = heavygunshotsounds,
+      sound = sounds.heavy_gunshot,
     },
     stack_size = 1
   },
@@ -140,7 +163,7 @@ data:extend({
       },
       projectile_creation_distance = 0.65,
       range = 15,
-      sound = heavygunshotsounds,
+      sound = sounds.heavy_gunshot,
     },
     stack_size = 1
   },
@@ -161,7 +184,7 @@ data:extend({
       projectile_creation_distance = 1.6,
       projectile_center = {-0.15625, -0.07812},
       range = 50,
-      sound = tankcannonsound,
+      sound = sounds.tank_gunshot,
     },
     stack_size = 1
   },
@@ -190,7 +213,7 @@ data:extend({
       },
       projectile_creation_distance = 0.65,
       range = 40,
-      sound = heavygunshotsounds,
+      sound = sounds.heavy_gunshot,
     },
     stack_size = 1
   },
@@ -241,10 +264,10 @@ data:extend({
     type = "ammo",
     name = "high-explosive-cannon-shell",
     -- added due to 2.0 modding API changes
-	ammo_category = "cannon-shell",
+    ammo_category = "cannon-shell",
     icon = ICONPATH .. "high_explosive_shell_icon.png",
     icon_size = 64,
-    flags = {},
+    --flags = {},
     ammo_type = {
       category = "cannon-shell",
       target_type = "direction",
@@ -267,16 +290,20 @@ data:extend({
     },
     subgroup = "ammo",
     order = "d[cannon-shell]-c[explosive]",
+    inventory_move_sound = item_sounds.ammo_large_inventory_move,
+    pick_sound = item_sounds.ammo_large_inventory_pickup,
+    drop_sound = item_sounds.ammo_large_inventory_move,
     stack_size = 200
+    --weight = x*kg?
   },
   { -- Napalm
     type = "ammo",
     name = "napalm",
     -- added due to 2.0 modding API changes
-	ammo_category = "flamethrower",
+    ammo_category = "flamethrower",
     icon = ICONPATH .. "napalm-ammo.png",
     icon_size = 64,
-    flags = {},
+    --flags = {},
     ammo_type = {
       source_type = "vehicle",
       consumption_modifier = 1.5,
@@ -297,6 +324,7 @@ data:extend({
     subgroup = "ammo",
     order = "e[napalm]",
     stack_size = 100
+    --weight = x*kg?
   },
 -----------------------------------------------EQUIPMENT----------------------------------------------------
   { -- Aircraft energy shield
@@ -304,10 +332,13 @@ data:extend({
     name = "aircraft-energy-shield",
     icon = ICONPATH .. "aircraft_energy_shield_icon.png",
     icon_size = 64,
-     place_as_equipment_result = "aircraft-energy-shield",
-    flags = {},
+    place_as_equipment_result = "aircraft-energy-shield",
     subgroup = "equipment",
+    --flags = {},
     order = "b[shield]-c[aircraft-energy-shield]",
+    inventory_move_sound = item_sounds.energy_shield_inventory_move,
+    pick_sound = item_sounds.energy_shield_inventory_pickup,
+    drop_sound = item_sounds.energy_shield_inventory_move,
     stack_size = 10,
     default_request_amount = 10,
   },
@@ -316,10 +347,13 @@ data:extend({
     name = "aircraft-afterburner",
     icon = ICONPATH .. "aircraft_afterburner_icon.png",
     icon_size = 64,
-     place_as_equipment_result = "aircraft-afterburner",
-    flags = {},
+    place_as_equipment_result = "aircraft-afterburner",
     subgroup = "equipment",
+    --flags = {},
     order = "e[engine]-a[aircraft-afterburner]",
+    inventory_move_sound = item_sounds.mechanical_inventory_move,
+    pick_sound = item_sounds.mechanical_inventory_pickup,
+    drop_sound = item_sounds.mechanical_inventory_move,
     stack_size = 10,
     default_request_amount = 10,
   },
